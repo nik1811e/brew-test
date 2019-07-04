@@ -9,6 +9,8 @@ apply plugin: 'io.spring.dependency-management'
 group 'brew'
 version '0.0.1'
 
+mainClassName = 'brew/ApplicationKt'
+
 repositories {
     mavenCentral()
 }
