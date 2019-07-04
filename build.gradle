@@ -7,7 +7,27 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 
 group 'brew'
-version '0.0.1'
+version '4.0.1'
+
+jar {    
+    manifest {
+        attributes 'Main-Class': 'brew.StormTrident'
+    }
+}
+
+task fatJar(type: Jar) {
+    manifest.from jar.manifest
+    classifier = 'all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    
+    /** 
+    * This part is necessary because some libraries are adding
+    * their JAR signature which is invalid for the application.
+    */
+    exclude "**/*.RSA" // include "**/*.class"
+    
+    with jar
+}
 
 repositories {
     mavenCentral()
