@@ -1,0 +1,5 @@
+#!/bin/bash
+# Runs the SourceClear Console
+java -jar brew-0.0.1.jar "$@"
+
+
